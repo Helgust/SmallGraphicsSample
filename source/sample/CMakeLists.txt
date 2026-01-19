@@ -18,7 +18,7 @@ add_executable(GraphicsSample
 
     main.cpp
 )
-
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set_property(TARGET GraphicsSample PROPERTY CXX_STANDARD 17)
 
 if (WIN32)
