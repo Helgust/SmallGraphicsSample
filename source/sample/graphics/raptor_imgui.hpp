@@ -15,43 +15,43 @@ struct TextureHandle;
 //
 //
 enum ImGuiStyles {
-    Default = 0,
-    GreenBlue,
-    DarkRed,
-    DarkGold
-}; // enum ImGuiStyles
+  Default = 0,
+  GreenBlue,
+  DarkRed,
+  DarkGold
+};  // enum ImGuiStyles
 
 //
 //
 struct ImGuiServiceConfiguration {
 
-    GpuDevice*                      gpu;
-    void*                           window_handle;
+  GpuDevice* gpu;
+  void* window_handle;
 
-}; // struct ImGuiServiceConfiguration
+};  // struct ImGuiServiceConfiguration
 
 //
 //
 struct ImGuiService : public raptor::Service {
 
-    RAPTOR_DECLARE_SERVICE( ImGuiService );
+  RAPTOR_DECLARE_SERVICE(ImGuiService);
 
-    void                            init( void* configuration ) override;
-    void                            shutdown() override;
+  void init(void* configuration) override;
+  void shutdown() override;
 
-    void                            new_frame();
-    void                            render( CommandBuffer& commands );
+  void new_frame();
+  void render(CommandBuffer& commands);
 
-    // Removes the Texture from the Cache and destroy the associated Descriptor Set.
-    void                            remove_cached_texture( TextureHandle& texture );
+  // Removes the Texture from the Cache and destroy the associated Descriptor Set.
+  void remove_cached_texture(TextureHandle& texture);
 
-    void                            set_style( ImGuiStyles style );
+  void set_style(ImGuiStyles style);
 
-    GpuDevice*                      gpu;
+  GpuDevice* gpu;
 
-    static constexpr cstring        k_name = "raptor_imgui_service";
+  static constexpr cstring k_name = "raptor_imgui_service";
 
-}; // ImGuiService
+};  // ImGuiService
 
 // File Dialog /////////////////////////////////////////////////////////
 
@@ -63,15 +63,15 @@ const char*                         imgui_path_dialog_get_path();*/
 
 // Application Log /////////////////////////////////////////////////////
 
-void                                imgui_log_init();
-void                                imgui_log_shutdown();
+void imgui_log_init();
+void imgui_log_shutdown();
 
-void                                imgui_log_draw();
+void imgui_log_draw();
 
 // FPS graph ///////////////////////////////////////////////////
-void                                imgui_fps_init();
-void                                imgui_fps_shutdown();
-void                                imgui_fps_add( f32 dt );
-void                                imgui_fps_draw();
+void imgui_fps_init();
+void imgui_fps_shutdown();
+void imgui_fps_add(f32 dt);
+void imgui_fps_draw();
 
-} // namespace raptor
+}  // namespace raptor
