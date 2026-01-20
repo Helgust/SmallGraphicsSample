@@ -5,36 +5,36 @@
 
 namespace raptor {
 
-    struct Service;
+struct Service;
 
-    struct ServiceManager {
+struct ServiceManager {
 
-        void                    init( Allocator* allocator );
-        void                    shutdown();
+  void init(Allocator* allocator);
+  void shutdown();
 
-        void                    add_service( Service* service, cstring name );
-        void                    remove_service( cstring name );
+  void add_service(Service* service, cstring name);
+  void remove_service(cstring name);
 
-        Service*                get_service( cstring name );
+  Service* get_service(cstring name);
 
-        template<typename T>
-        T*                      get();
+  template <typename T>
+  T* get();
 
-        static ServiceManager*  instance;
+  static ServiceManager* instance;
 
-        FlatHashMap<u64, Service*> services;
-        Allocator*              allocator   = nullptr;
+  FlatHashMap<u64, Service*> services;
+  Allocator* allocator = nullptr;
 
-    }; // struct ServiceManager
+};  // struct ServiceManager
 
-    template<typename T>
-    inline T* ServiceManager::get() {
-        T* service = ( T* )get_service( T::k_name );
-        if ( !service ) {
-            add_service( T::instance(), T::k_name );
-        }
+template <typename T>
+inline T* ServiceManager::get() {
+  T* service = (T*)get_service(T::k_name);
+  if (!service) {
+    add_service(T::instance(), T::k_name);
+  }
 
-        return T::instance();
-    }
+  return T::instance();
+}
 
-} // namespace raptor
+}  // namespace raptor

@@ -111,4 +111,4 @@ void Serialize( Serializer* s, bool* data ) {
 
 */
 
-} // namespace raptor
+}  // namespace raptor

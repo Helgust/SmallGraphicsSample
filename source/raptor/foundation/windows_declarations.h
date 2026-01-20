@@ -15,10 +15,12 @@ typedef void* LPVOID;
 
 typedef struct _SECURITY_ATTRIBUTES SECURITY_ATTRIBUTES;
 
-#define FORWARD_DECLARE_HANDLE(name) struct name##__; typedef struct name##__ *name
+#define FORWARD_DECLARE_HANDLE(name) \
+  struct name##__;                   \
+  typedef struct name##__* name
 
-FORWARD_DECLARE_HANDLE( HINSTANCE );
-FORWARD_DECLARE_HANDLE( HWND );
-FORWARD_DECLARE_HANDLE( HMONITOR );
+FORWARD_DECLARE_HANDLE(HINSTANCE);
+FORWARD_DECLARE_HANDLE(HWND);
+FORWARD_DECLARE_HANDLE(HMONITOR);
 
 #define NULL 0

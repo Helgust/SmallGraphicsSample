@@ -4,13 +4,14 @@
 
 namespace raptor {
 
-    struct Service {
+struct Service {
 
-        virtual void                        init( void* configuration ) { }
-        virtual void                        shutdown() { }
+  virtual void init(void* configuration) {}
 
-    }; // struct Service
+  virtual void shutdown() {}
 
-    #define RAPTOR_DECLARE_SERVICE(Type)        static Type* instance();
+};  // struct Service
 
-} // namespace raptor
+#define RAPTOR_DECLARE_SERVICE(Type) static Type* instance();
+
+}  // namespace raptor

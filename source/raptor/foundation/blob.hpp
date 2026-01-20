@@ -4,7 +4,6 @@
 
 namespace raptor {
 
-
 //
 //
 // Memory blob used to serialize versioned data.
@@ -17,14 +16,14 @@ namespace raptor {
 // thus serialization is automatic.
 //
 struct BlobHeader {
-    u32                 version;
-    u32                 mappable;
-}; // struct BlobHeader
+  u32 version;
+  u32 mappable;
+};  // struct BlobHeader
 
 //
 //
 struct Blob {
-    BlobHeader          header;
-}; // struct Blob
+  BlobHeader header;
+};  // struct Blob
 
-} // namespace raptor
+}  // namespace raptor

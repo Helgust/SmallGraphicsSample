@@ -2,8 +2,4 @@
 
 #include "foundation/platform.hpp"
 
-namespace raptor {
-
-    
-
-} // namespace raptor
+namespace raptor {}  // namespace raptor

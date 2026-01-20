@@ -1,12 +1,12 @@
 #pragma once
 
-#include "foundation/platform.hpp"
 #include "foundation/file.hpp"
+#include "foundation/platform.hpp"
 
 namespace raptor {
 
 // Serialization taken from article https://yave.handmade.network/blogs/p/2723-how_media_molecule_does_serialization
-    /*
+/*
 struct Serializer {
 
     void            start_writing( FILE* file, u32 data_version );
@@ -62,4 +62,4 @@ void                 Serialize( Serializer* s, bool* data );
         Serialize(s, &(_fieldName)); \
     }
     */
-} // namespace raptor
+}  // namespace raptor
