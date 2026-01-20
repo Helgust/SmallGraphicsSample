@@ -7,7 +7,6 @@
 #include "graphics/command_buffer.hpp"
 #include "graphics/gpu_device.hpp"
 
-
 #include "external/imgui/imgui.h"
 #include "external/imgui/imgui_impl_sdl.h"
 

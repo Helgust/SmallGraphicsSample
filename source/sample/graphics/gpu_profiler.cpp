@@ -4,13 +4,11 @@
 #include "foundation/hash_map.hpp"
 #include "foundation/numerics.hpp"
 
-
 #include "graphics/renderer.hpp"
 
 #include <stdio.h>
 #include <cmath>
 #include "external/imgui/imgui.h"
-
 
 namespace raptor {
 
