@@ -4,8 +4,8 @@
 
 #include "application/application.hpp"
 
-#include "graphics/debug_renderer.hpp"
 #include "graphics/camera.hpp"
+#include "graphics/debug_renderer.hpp"
 
 #include "foundation/array.hpp"
 

@@ -8,39 +8,56 @@ struct ServiceManager;
 
 struct ApplicationConfiguration {
 
-    u32                         width;
-    u32                         height;
+  u32 width;
+  u32 height;
 
-    cstring                     name = nullptr;
+  cstring name = nullptr;
 
-    bool                        init_base_services  = false;
+  bool init_base_services = false;
 
-    ApplicationConfiguration&   w( u32 value ) { width = value; return *this; }
-    ApplicationConfiguration&   h( u32 value ) { height = value; return *this; }
-    ApplicationConfiguration&   name_( cstring value ) { name = value; return *this; }
+  ApplicationConfiguration& w(u32 value) {
+    width = value;
+    return *this;
+  }
 
-}; // struct ApplicationConfiguration
+  ApplicationConfiguration& h(u32 value) {
+    height = value;
+    return *this;
+  }
+
+  ApplicationConfiguration& name_(cstring value) {
+    name = value;
+    return *this;
+  }
+
+};  // struct ApplicationConfiguration
 
 struct Application {
-    // 
-    virtual void                create( const ApplicationConfiguration& configuration ) {}
-    virtual void                destroy() {}
-    virtual bool                main_loop() { return false; }
+  //
+  virtual void create(const ApplicationConfiguration& configuration) {}
 
-    // Fixed update. Can be called more than once compared to rendering.
-    virtual void                fixed_update( f32 delta ) {}
-    // Variable time update. Called only once per frame.
-    virtual void                variable_update( f32 delta ) {}
-    // Rendering with optional interpolation factor.
-    virtual void                render( f32 interpolation ) {}
-    // Per frame begin/end.
-    virtual void                frame_begin() {}
-    virtual void                frame_end() {}
+  virtual void destroy() {}
 
-    void                        run( const ApplicationConfiguration& configuration );
+  virtual bool main_loop() { return false; }
 
-    ServiceManager*             service_manager = nullptr;
+  // Fixed update. Can be called more than once compared to rendering.
+  virtual void fixed_update(f32 delta) {}
 
-}; // struct Application
+  // Variable time update. Called only once per frame.
+  virtual void variable_update(f32 delta) {}
 
-} // namespace raptor
+  // Rendering with optional interpolation factor.
+  virtual void render(f32 interpolation) {}
+
+  // Per frame begin/end.
+  virtual void frame_begin() {}
+
+  virtual void frame_end() {}
+
+  void run(const ApplicationConfiguration& configuration);
+
+  ServiceManager* service_manager = nullptr;
+
+};  // struct Application
+
+}  // namespace raptor
