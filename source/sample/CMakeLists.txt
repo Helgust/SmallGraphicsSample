@@ -29,6 +29,10 @@ if (WIN32)
 endif()
 
 target_compile_definitions(GraphicsSample PRIVATE
+    RAPTOR_SHADER_FOLDER="${CMAKE_CURRENT_SOURCE_DIR}/shaders/"
+)
+
+target_compile_definitions(GraphicsSample PRIVATE
     TRACY_ENABLE
     TRACY_ON_DEMAND
     TRACY_NO_SYSTEM_TRACING
@@ -40,6 +44,7 @@ target_include_directories(GraphicsSample PRIVATE
     ../raptor
     ${Vulkan_INCLUDE_DIRS}
 )
+
 
 if (WIN32)
     target_include_directories(GraphicsSample PRIVATE
@@ -86,3 +91,32 @@ if (WIN32)
             )
     endforeach()
 endif()
+
+file(GLOB GLSL_SHADERS
+    shaders/*.vert
+    shaders/*.frag)
+
+add_custom_target(SpvShaders
+    SOURCES ${GLSL_SHADERS}
+)
+
+if (WIN32)
+    file(TO_NATIVE_PATH "$ENV{VULKAN_SDK}/bin/glslc.exe" GLSL_COMPILER)
+else()
+    file(TO_NATIVE_PATH "$ENV{VULKAN_SDK}/bin/glslc" GLSL_COMPILER)
+endif()
+
+if (NOT EXISTS ${GLSL_COMPILER})
+    message(FATAL_ERROR "${GLSL_COMPILER} is not a valid path. Please make sure the VULKAN_SDK environment variable is set.")
+endif()
+
+foreach (GLSL_SHADER ${GLSL_SHADERS})
+    add_custom_command(TARGET SpvShaders
+        COMMAND ${GLSL_COMPILER} ${GLSL_SHADER}
+        DEPENDS ${GLSL_SHADER}
+    )
+endforeach()
+
+add_dependencies(GraphicsSample
+    SpvShaders
+)
